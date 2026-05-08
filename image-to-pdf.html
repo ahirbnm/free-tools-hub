@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta property="og:site_name" content="Free Tools Hub">
+
+<title>Image To PDF Converter Online Free | Free Tools Hub</title>
+
+<meta name="description" content="Convert images to PDF online free. Upload multiple images and create PDF instantly.">
+
+<link rel="icon" type="image/png" href="logo.png">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#07111f;
+color:white;
+padding:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+}
+
+header{
+text-align:center;
+margin-bottom:30px;
+}
+
+header h1{
+font-size:45px;
+margin-bottom:10px;
+}
+
+header p{
+color:#c6d3df;
+font-size:17px;
+}
+
+.box{
+background:#132238;
+padding:30px;
+border-radius:25px;
+box-shadow:0 0 25px rgba(0,255,255,0.08);
+}
+
+.upload{
+border:2px dashed #4d6b8a;
+padding:35px;
+border-radius:18px;
+text-align:center;
+cursor:pointer;
+transition:0.3s;
+font-size:18px;
+}
+
+.upload:hover{
+background:#1a2f4a;
+transform:scale(1.02);
+}
+
+#preview{
+margin-top:20px;
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+justify-content:center;
+}
+
+#preview img{
+width:90px;
+border-radius:10px;
+}
+
+.count{
+margin-top:15px;
+font-size:15px;
+color:#d6e1ec;
+text-align:center;
+}
+
+.progress{
+height:12px;
+background:#223a56;
+margin-top:20px;
+border-radius:10px;
+overflow:hidden;
+}
+
+.bar{
+height:100%;
+width:0%;
+background:#00ffaa;
+}
+
+button{
+margin-top:20px;
+padding:16px;
+width:100%;
+border:none;
+border-radius:15px;
+background:#00b4ff;
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+font-weight:bold;
+}
+
+button:hover{
+transform:scale(1.03);
+background:#0090cc;
+}
+
+/* SEO SECTION */
+
+.seo{
+margin-top:40px;
+background:#132238;
+padding:30px;
+border-radius:25px;
+line-height:1.9;
+}
+
+.seo h2{
+margin-bottom:15px;
+margin-top:25px;
+font-size:28px;
+}
+
+.seo p{
+color:#d5e1ec;
+font-size:16px;
+}
+
+footer{
+margin-top:40px;
+text-align:center;
+color:#9fb1c4;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+<h1>📄 Image To PDF Converter</h1>
+
+<p>
+Convert Images Into PDF Online For Free
+</p>
+
+</header>
+
+<div class="box">
+
+<div class="upload" id="dropArea">
+
+👉 Click OR Drag Images Here
+
+<input type="file" id="file" multiple accept="image/*" hidden>
+
+</div>
+
+<div class="count" id="count">
+No images selected
+</div>
+
+<div id="preview"></div>
+
+<div class="progress">
+<div class="bar" id="bar"></div>
+</div>
+
+<button onclick="convert()">
+🚀 Convert To PDF
+</button>
+
+</div>
+
+<!-- SEO CONTENT -->
+
+<div class="seo">
+
+<h2>How To Convert Images To PDF</h2>
+
+<p>
+Upload your images using the upload button or drag & drop feature.
+Click on “Convert To PDF” and your PDF file will be generated instantly.
+</p>
+
+<h2>Why Use Free Tools Hub?</h2>
+
+<p>
+✅ Fast conversion <br>
+✅ Secure file processing <br>
+✅ No signup required <br>
+✅ Mobile friendly tool <br>
+✅ Unlimited usage
+</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<p>
+<b>Is this Image To PDF tool free?</b><br>
+Yes, this tool is completely free to use.
+</p>
+
+<br>
+
+<p>
+<b>Can I upload multiple images?</b><br>
+Yes, you can upload multiple images and convert them into one PDF file.
+</p>
+
+<br>
+
+<p>
+<b>Does this tool work on mobile?</b><br>
+Yes, the tool works perfectly on mobile devices and computers.
+</p>
+
+</div>
+
+<footer>
+
+© 2026 Free Tools Hub
+
+</footer>
+
+</div>
+
+<script>
+
+let filesList = [];
+
+let fileInput = document.getElementById("file");
+let dropArea = document.getElementById("dropArea");
+
+dropArea.onclick = () => fileInput.click();
+
+fileInput.addEventListener("change",(e)=>{
+handleFiles(e.target.files);
+});
+
+/* DRAG DROP */
+
+dropArea.addEventListener("dragover",(e)=>{
+e.preventDefault();
+dropArea.style.background="#1a2f4a";
+});
+
+dropArea.addEventListener("dragleave",()=>{
+dropArea.style.background="";
+});
+
+dropArea.addEventListener("drop",(e)=>{
+e.preventDefault();
+handleFiles(e.dataTransfer.files);
+});
+
+/* HANDLE FILES */
+
+function handleFiles(files){
+
+filesList = Array.from(files);
+
+let preview=document.getElementById("preview");
+let count=document.getElementById("count");
+
+preview.innerHTML="";
+
+count.innerHTML=filesList.length + " images selected";
+
+filesList.forEach(file=>{
+
+let reader=new FileReader();
+
+reader.onload=(e)=>{
+
+let img=document.createElement("img");
+
+img.src=e.target.result;
+
+preview.appendChild(img);
+
+}
+
+reader.readAsDataURL(file);
+
+});
+
+}
+
+/* PDF CONVERT */
+
+async function convert(){
+
+if(filesList.length===0){
+
+alert("Please select images first!");
+
+return;
+
+}
+
+const { jsPDF } = window.jspdf;
+
+let pdf = new jsPDF();
+
+let bar = document.getElementById("bar");
+
+for(let i=0;i<filesList.length;i++){
+
+let reader=new FileReader();
+
+await new Promise(resolve=>{
+
+reader.onload=(e)=>{
+
+if(i!==0) pdf.addPage();
+
+pdf.addImage(e.target.result,'JPEG',10,10,180,160);
+
+bar.style.width=((i+1)/filesList.length)*100+"%";
+
+resolve();
+
+};
+
+reader.readAsDataURL(filesList[i]);
+
+});
+
+}
+
+pdf.save("final.pdf");
+
+}
+
+</script>
+
+</body>
+
+</html>
