@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit Converter | Free Tools Hub</title>
+<meta name="description" content="Convert kilometers to miles instantly online free tool.">
+<link rel="icon" type="image/png" href="logo.png">
+
+<style>
+body{
+font-family:Arial;
+background:#07111f;
+color:white;
+padding:20px;
+}
+
+.box{
+max-width:500px;
+margin:auto;
+background:#132238;
+padding:25px;
+border-radius:20px;
+}
+
+input,button{
+width:100%;
+padding:14px;
+margin-top:15px;
+border:none;
+border-radius:10px;
+}
+
+button{
+background:#00b4ff;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+.result{
+margin-top:20px;
+text-align:center;
+font-size:22px;
+background:#0b1727;
+padding:15px;
+border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+<div class="box">
+<h1>📐 Unit Converter</h1>
+
+<input type="number" id="km" placeholder="Enter Kilometers">
+
+<button onclick="convert()">Convert to Miles</button>
+
+<div class="result" id="result">Result will appear here</div>
+</div>
+
+<script>
+function convert(){
+let km = parseFloat(document.getElementById('km').value);
+
+if(isNaN(km)){
+document.getElementById('result').innerText = "Please enter valid number";
+return;
+}
+
+let miles = (km * 0.621371).toFixed(2);
+
+document.getElementById('result').innerText = km + " KM = " + miles + " Miles";
+}
+</script>
+
+</body>
+</html>
