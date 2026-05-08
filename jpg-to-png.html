@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JPG to PNG</title>
+<link rel="icon" href="logo.png">
+
+<style>
+body{font-family:Arial;background:#07111f;color:white;padding:20px;text-align:center}
+.box{max-width:500px;margin:auto;background:#132238;padding:25px;border-radius:20px}
+input,button{width:100%;padding:14px;margin-top:10px;border:none;border-radius:10px}
+button{background:#00b4ff;color:white}
+canvas{display:none}
+
+.info{margin-top:15px;background:#0b1727;padding:15px;border-radius:10px;text-align:left}
+.info h2{color:#00b4ff}
+</style>
+</head>
+
+<body>
+<div class="box">
+<h1>🖼 JPG → PNG</h1>
+
+<input type="file" id="file" accept="image/*">
+<button onclick="convert()">Convert</button>
+
+<a id="dl" style="color:#00b4ff"></a>
+
+<div class="info">
+<h2>How To Use</h2>
+<p>Image upload करो और convert करो।</p>
+
+<h2>What It Does</h2>
+<p>JPG को PNG में convert करता है।</p>
+
+<h2>Benefits</h2>
+<p>✔ Transparent support<br>✔ Better quality<br>✔ Free tool</p>
+</div>
+</div>
+
+<script>
+function convert(){
+let f=document.getElementById('file').files[0];
+let r=new FileReader();
+
+r.onload=function(e){
+let img=new Image();
+img.src=e.target.result;
+
+img.onload=function(){
+let c=document.createElement('canvas');
+let ctx=c.getContext('2d');
+
+c.width=img.width;
+c.height=img.height;
+
+ctx.drawImage(img,0,0);
+
+let png=c.toDataURL('image/png');
+
+document.getElementById('dl').href=png;
+document.getElementById('dl').download="image.png";
+document.getElementById('dl').innerText="Download PNG";
+}
+}
+r.readAsDataURL(f);
+}
+</script>
+</body>
+</html>
