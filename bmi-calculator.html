@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMI Calculator | Free Tools Hub</title>
+<meta name="description" content="Calculate your Body Mass Index (BMI) online free.">
+<link rel="icon" type="image/png" href="logo.png">
+
+<style>
+body{font-family:Arial;background:#07111f;color:white;padding:20px}
+.box{max-width:500px;margin:auto;background:#132238;padding:25px;border-radius:20px}
+input,button{width:100%;padding:14px;margin-top:15px;border:none;border-radius:10px}
+button{background:#00b4ff;color:white;font-weight:bold}
+.result{margin-top:20px;font-size:22px;text-align:center}
+</style>
+</head>
+
+<body>
+<div class="box">
+<h1>⚖️ BMI Calculator</h1>
+
+<input type="number" id="weight" placeholder="Weight (KG)">
+<input type="number" id="height" placeholder="Height (CM)">
+
+<button onclick="calculateBMI()">Calculate BMI</button>
+
+<h2 class="result" id="result"></h2>
+</div>
+
+<script>
+function calculateBMI(){
+let w = parseFloat(document.getElementById('weight').value);
+let h = parseFloat(document.getElementById('height').value);
+
+if(!w || !h){
+document.getElementById('result').innerText = "Enter valid values";
+return;
+}
+
+let bmi = (w / ((h/100) * (h/100))).toFixed(2);
+
+let status = "";
+
+if(bmi < 18.5){
+status = "Underweight";
+}else if(bmi < 24.9){
+status = "Normal";
+}else if(bmi < 29.9){
+status = "Overweight";
+}else{
+status = "Obese";
+}
+
+document.getElementById('result').innerText =
+"Your BMI: " + bmi + " (" + status + ")";
+}
+</script>
+
+</body>
+</html>
