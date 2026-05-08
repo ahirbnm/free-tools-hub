@@ -4,17 +4,24 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Free Tools Hub</title>
+<meta property="og:site_name" content="Free Tools Hub">
 
-<meta name="description" content="Best free online tools hub with useful AI and utility tools.">
+<meta name="google-site-verification" content="sInNrdxE3zHzEle51cvbLDi5DTQOqJ9QV_wRbcxOW18" />
 
-<meta name="keywords" content="free tools, AI tools, QR generator, image tools">
+<title>Free Tools Hub | Online Free Tools</title>
+
+<meta name="description" content="Free online tools for PDF, image editing, QR generator, AI tools and more.">
+
+<meta name="keywords" content="free tools, image to pdf, compress image, qr generator, ai tools">
 
 <meta name="robots" content="index, follow">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" type="image/png" href="logo.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -22,73 +29,186 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
+font-family:Poppins,sans-serif;
 }
 
 body{
-font-family:Arial,sans-serif;
-background:#0f172a;
+background:#07111f;
 color:white;
-min-height:100vh;
 display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
+min-height:100vh;
 }
 
-.container{
-width:100%;
-max-width:900px;
+/* SIDEBAR */
+
+.sidebar{
+width:260px;
+background:#0b1727;
+padding:25px;
+border-right:1px solid rgba(255,255,255,0.08);
+position:fixed;
+height:100%;
+overflow:auto;
+}
+
+.logo{
 text-align:center;
+margin-bottom:35px;
 }
 
-h1{
-font-size:40px;
-margin-bottom:15px;
-color:#38bdf8;
+.logo img{
+width:90px;
+height:90px;
+border-radius:50%;
+background:white;
+padding:5px;
+box-shadow:0 0 20px rgba(0,255,255,0.5);
+margin-bottom:10px;
 }
 
-p{
-font-size:18px;
-color:#cbd5e1;
-margin-bottom:30px;
+.logo h2{
+font-size:24px;
 }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
+.search-box{
+margin-bottom:25px;
+}
+
+.search-box input{
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+background:#132238;
+color:white;
+outline:none;
+}
+
+.menu-title{
+font-size:13px;
+color:#8fa3bf;
 margin-top:20px;
+margin-bottom:10px;
+text-transform:uppercase;
+}
+
+.menu a{
+display:block;
+padding:14px;
+margin-bottom:12px;
+border-radius:12px;
+text-decoration:none;
+color:white;
+background:#132238;
+transition:0.3s;
+}
+
+.menu a:hover{
+background:#1d3557;
+transform:translateX(5px);
+}
+
+/* MAIN */
+
+.main{
+margin-left:260px;
+width:100%;
+padding:30px;
+}
+
+/* HERO */
+
+.hero{
+background:linear-gradient(135deg,#132238,#1d3557);
+padding:45px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 0 25px rgba(0,255,255,0.08);
+}
+
+.hero h1{
+font-size:50px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:18px;
+color:#d0dae5;
+}
+
+/* TOOLS */
+
+.tools{
+margin-top:35px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:20px;
 }
 
 .card{
-background:#1e293b;
+background:#132238;
 padding:25px;
-border-radius:15px;
+border-radius:22px;
 transition:0.3s;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 0 25px rgba(0,255,255,0.15);
+}
+
+.card a{
 text-decoration:none;
 color:white;
 }
 
-.card:hover{
-transform:translateY(-5px);
-background:#334155;
+.icon{
+font-size:45px;
+margin-bottom:15px;
 }
 
 .card h2{
+font-size:24px;
 margin-bottom:10px;
-font-size:22px;
 }
 
 .card p{
-font-size:15px;
-margin:0;
-color:#cbd5e1;
+font-size:14px;
+color:#b6c2d1;
 }
 
 footer{
 margin-top:40px;
-font-size:14px;
+text-align:center;
 color:#94a3b8;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+body{
+flex-direction:column;
+}
+
+.sidebar{
+width:100%;
+height:auto;
+position:relative;
+border-right:none;
+border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.main{
+margin-left:0;
+padding:20px;
+}
+
+.hero h1{
+font-size:35px;
+}
+
 }
 
 </style>
@@ -97,44 +217,272 @@ color:#94a3b8;
 
 <body>
 
-<main class="container">
+<!-- SIDEBAR -->
 
-<h1>Welcome to Free Tools Hub</h1>
+<div class="sidebar">
+
+<div class="logo">
+
+<img src="logo.png">
+
+<h2>Free Tools Hub</h2>
+
+</div>
+
+<div class="search-box">
+
+<input type="text" placeholder="Search tools...">
+
+</div>
+
+<div class="menu">
+
+<div class="menu-title">Home</div>
+
+<a href="index.html">🏠 Home</a>
+
+<div class="menu-title">Most Used Tools</div>
+
+<a href="image-to-pdf.html">📄 Image To PDF</a>
+
+<a href="compress-image.html">🖼 Compress Image</a>
+
+<a href="resize-image.html">📏 Resize Image</a>
+
+<a href="pdf-to-jpg.html">📑 PDF To JPG</a>
+
+<a href="jpg-to-png.html">🖼 JPG To PNG</a>
+
+<a href="qr-generator.html">🔳 QR Generator</a>
+
+<a href="password-generator.html">🔐 Password Generator</a>
+
+<a href="word-counter.html">📝 Word Counter</a>
+
+<a href="age-calculator.html">🎂 Age Calculator</a>
+
+<a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+
+<a href="color-picker.html">🎨 Color Picker</a>
+
+<a href="text-to-speech.html">🔊 Text To Speech</a>
+
+<a href="ai-text-tool.html">🤖 AI Text Tool</a>
+
+<a href="unit-converter.html">📐 Unit Converter</a>
+
+</div>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+<div class="hero">
+
+<h1>WELCOME TO FREE TOOLS HUB</h1>
 
 <p>
-Fast, Free and Useful Online Tools
+Fast • Secure • Modern Online Tools
 </p>
 
-<div class="grid">
+</div>
 
-<a class="card" href="#">
+<div class="tools">
+
+<!-- CARD -->
+
+<div class="card">
+<a href="image-to-pdf.html">
+
+<div class="icon">📄</div>
+
+<h2>Image To PDF</h2>
+
+<p>Convert images into PDF instantly online.</p>
+
+</a>
+</div>
+
+<!-- CARD -->
+
+<div class="card">
+<a href="compress-image.html">
+
+<div class="icon">🖼</div>
+
+<h2>Compress Image</h2>
+
+<p>Reduce image size without losing quality.</p>
+
+</a>
+</div>
+
+<!-- CARD -->
+
+<div class="card">
+<a href="resize-image.html">
+
+<div class="icon">📏</div>
+
+<h2>Resize Image</h2>
+
+<p>Resize image dimensions quickly online.</p>
+
+</a>
+</div>
+
+<!-- CARD -->
+
+<div class="card">
+<a href="pdf-to-jpg.html">
+
+<div class="icon">📑</div>
+
+<h2>PDF To JPG</h2>
+
+<p>Convert PDF pages into JPG images.</p>
+
+</a>
+</div>
+
+<!-- CARD -->
+
+<div class="card">
+<a href="jpg-to-png.html">
+
+<div class="icon">🖼</div>
+
+<h2>JPG To PNG</h2>
+
+<p>Convert JPG images into PNG format.</p>
+
+</a>
+</div>
+
+<!-- CARD -->
+
+<div class="card">
+<a href="qr-generator.html">
+
+<div class="icon">🔳</div>
+
 <h2>QR Generator</h2>
-<p>Create QR codes instantly.</p>
-</a>
 
-<a class="card" href="#">
-<h2>Image Compressor</h2>
-<p>Compress images online free.</p>
-</a>
+<p>Create QR codes online instantly.</p>
 
-<a class="card" href="#">
-<h2>AI Text Tool</h2>
-<p>Generate smart AI text quickly.</p>
 </a>
+</div>
 
-<a class="card" href="#">
+<!-- NEW TOOLS -->
+
+<div class="card">
+<a href="password-generator.html">
+
+<div class="icon">🔐</div>
+
 <h2>Password Generator</h2>
-<p>Create strong secure passwords.</p>
+
+<p>Create strong secure passwords instantly.</p>
+
 </a>
+</div>
+
+<div class="card">
+<a href="word-counter.html">
+
+<div class="icon">📝</div>
+
+<h2>Word Counter</h2>
+
+<p>Count words and characters online.</p>
+
+</a>
+</div>
+
+<div class="card">
+<a href="age-calculator.html">
+
+<div class="icon">🎂</div>
+
+<h2>Age Calculator</h2>
+
+<p>Calculate your exact age instantly.</p>
+
+</a>
+</div>
+
+<div class="card">
+<a href="bmi-calculator.html">
+
+<div class="icon">⚖️</div>
+
+<h2>BMI Calculator</h2>
+
+<p>Check your body mass index online.</p>
+
+</a>
+</div>
+
+<div class="card">
+<a href="color-picker.html">
+
+<div class="icon">🎨</div>
+
+<h2>Color Picker</h2>
+
+<p>Pick and copy colors easily.</p>
+
+</a>
+</div>
+
+<div class="card">
+<a href="text-to-speech.html">
+
+<div class="icon">🔊</div>
+
+<h2>Text To Speech</h2>
+
+<p>Convert text into voice instantly.</p>
+
+</a>
+</div>
+
+<div class="card">
+<a href="ai-text-tool.html">
+
+<div class="icon">🤖</div>
+
+<h2>AI Text Tool</h2>
+
+<p>Generate smart AI text quickly.</p>
+
+</a>
+</div>
+
+<div class="card">
+<a href="unit-converter.html">
+
+<div class="icon">📐</div>
+
+<h2>Unit Converter</h2>
+
+<p>Convert units online instantly.</p>
+
+</a>
+</div>
 
 </div>
 
 <footer>
+
 © 2026 Free Tools Hub
+
 </footer>
 
-</main>
+</div>
 
 </body>
-</html>
 
+</html>
