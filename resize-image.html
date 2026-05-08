@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Resize Image</title>
+<link rel="icon" href="logo.png">
+
+<style>
+body{font-family:Arial;background:#07111f;color:white;padding:20px;text-align:center}
+.box{max-width:500px;margin:auto;background:#132238;padding:25px;border-radius:20px}
+input,button{width:100%;padding:14px;margin-top:10px;border:none;border-radius:10px}
+button{background:#00b4ff;color:white}
+canvas{margin-top:15px;max-width:100%}
+
+.info{margin-top:15px;background:#0b1727;padding:15px;border-radius:10px;text-align:left}
+.info h2{color:#00b4ff}
+</style>
+</head>
+
+<body>
+<div class="box">
+<h1>📏 Resize Image</h1>
+
+<input type="file" id="file">
+<input type="number" id="w" placeholder="Width">
+<input type="number" id="h" placeholder="Height">
+
+<button onclick="resize()">Resize</button>
+
+<canvas id="canvas"></canvas>
+
+<div class="info">
+<h2>How To Use</h2>
+<p>Image upload करो, width & height डालो, resize करो।</p>
+
+<h2>What It Does</h2>
+<p>Image को छोटा या बड़ा करता है quality के साथ।</p>
+
+<h2>Benefits</h2>
+<p>✔ Website images<br>✔ Social media<br>✔ Fast editing</p>
+</div>
+</div>
+
+<script>
+function resize(){
+let f=document.getElementById('file').files[0];
+let r=new FileReader();
+
+r.onload=function(e){
+let img=new Image();
+img.src=e.target.result;
+
+img.onload=function(){
+let c=document.getElementById('canvas');
+let ctx=c.getContext('2d');
+
+c.width=document.getElementById('w').value;
+c.height=document.getElementById('h').value;
+
+ctx.drawImage(img,0,0,c.width,c.height);
+}
+}
+r.readAsDataURL(f);
+}
+</script>
+</body>
+</html>
