@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>QR Generator</title>
+<link rel="icon" href="logo.png">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+body{font-family:Arial;background:#07111f;color:white;padding:20px}
+.box{max-width:500px;margin:auto;background:#132238;padding:25px;border-radius:20px}
+input,button{width:100%;padding:14px;margin-top:10px;border:none;border-radius:10px}
+button{background:#00b4ff;color:white}
+
+#qr{margin-top:15px;display:flex;justify-content:center}
+
+.info{margin-top:15px;background:#0b1727;padding:15px;border-radius:10px}
+.info h2{color:#00b4ff}
+</style>
+</head>
+
+<body>
+<div class="box">
+<h1>🔳 QR Code Generator</h1>
+
+<input id="text" placeholder="Enter text or link">
+<button onclick="gen()">Generate</button>
+
+<div id="qr"></div>
+
+<div class="info">
+<h2>How To Use</h2>
+<p>Text या link डालो और QR generate करो।</p>
+
+<h2>What It Does</h2>
+<p>QR code बनाता है जिसे scan करके open किया जा सकता है।</p>
+
+<h2>Benefits</h2>
+<p>✔ Business use<br>✔ Sharing links<br>✔ Fast access</p>
+</div>
+</div>
+
+<script>
+function gen(){
+document.getElementById("qr").innerHTML="";
+new QRCode(document.getElementById("qr"),document.getElementById("text").value);
+}
+</script>
+</body>
+</html>
