@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Calculator | Free Tools Hub</title>
+<meta name="description" content="Calculate your exact age instantly online free.">
+<link rel="icon" type="image/png" href="logo.png">
+
+<style>
+body{font-family:Arial;background:#07111f;color:white;padding:20px}
+.box{max-width:500px;margin:auto;background:#132238;padding:25px;border-radius:20px}
+input,button{width:100%;padding:14px;margin-top:15px;border:none;border-radius:10px}
+button{background:#00b4ff;color:white;font-weight:bold}
+.result{margin-top:20px;font-size:22px;text-align:center}
+</style>
+</head>
+
+<body>
+<div class="box">
+<h1>🎂 Age Calculator</h1>
+
+<input type="date" id="dob">
+
+<button onclick="calculateAge()">Calculate Age</button>
+
+<h2 class="result" id="result"></h2>
+</div>
+
+<script>
+function calculateAge(){
+let dob = new Date(document.getElementById('dob').value);
+
+if(!dob.getTime()){
+document.getElementById('result').innerText = "Please select valid date";
+return;
+}
+
+let diff = Date.now() - dob.getTime();
+let ageDate = new Date(diff);
+let age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+document.getElementById('result').innerText = "Your Age: " + age + " Years";
+}
+</script>
+
+</body>
+</html>
