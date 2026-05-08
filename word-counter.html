@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Counter | Free Tools Hub</title>
+<meta name="description" content="Count words and characters online free tool.">
+<link rel="icon" type="image/png" href="logo.png">
+
+<style>
+body{font-family:Arial;background:#07111f;color:white;padding:20px}
+.box{max-width:700px;margin:auto;background:#132238;padding:25px;border-radius:20px}
+textarea{width:100%;height:200px;padding:15px;border:none;border-radius:10px}
+button{width:100%;padding:14px;margin-top:15px;border:none;border-radius:10px;background:#00b4ff;color:white;font-weight:bold}
+.result{margin-top:20px;font-size:20px;background:#0b1727;padding:15px;border-radius:10px}
+</style>
+</head>
+
+<body>
+<div class="box">
+<h1>📝 Word Counter</h1>
+
+<textarea id="text" placeholder="Type or paste your text here..."></textarea>
+
+<button onclick="countWords()">Count Words</button>
+
+<div class="result" id="result">Words: 0 | Characters: 0</div>
+</div>
+
+<script>
+function countWords(){
+let text = document.getElementById('text').value;
+
+// words count
+let words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
+
+// characters count
+let chars = text.length;
+
+document.getElementById('result').innerText =
+"Words: " + words + " | Characters: " + chars;
+}
+</script>
+
+</body>
+</html>
