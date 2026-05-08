@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Text Tool | Free Tools Hub</title>
+<meta name="description" content="Simple AI text generator tool (demo version).">
+<link rel="icon" type="image/png" href="logo.png">
+
+<style>
+body{
+font-family:Arial;
+background:#07111f;
+color:white;
+padding:20px;
+}
+
+.box{
+max-width:700px;
+margin:auto;
+background:#132238;
+padding:25px;
+border-radius:20px;
+}
+
+textarea,button{
+width:100%;
+padding:14px;
+margin-top:15px;
+border:none;
+border-radius:10px;
+}
+
+textarea{
+height:180px;
+}
+
+button{
+background:#00b4ff;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+.result{
+margin-top:20px;
+background:#0b1727;
+padding:15px;
+border-radius:10px;
+min-height:80px;
+}
+</style>
+</head>
+
+<body>
+<div class="box">
+<h1>🤖 AI Text Tool (Demo)</h1>
+
+<textarea id="prompt" placeholder="Write your prompt..."></textarea>
+
+<button onclick="generateText()">Generate Text</button>
+
+<div class="result" id="result">AI output will appear here...</div>
+</div>
+
+<script>
+function generateText(){
+let input = document.getElementById('prompt').value.toLowerCase();
+
+if(input.trim() === ""){
+document.getElementById('result').innerText = "Please enter something";
+return;
+}
+
+// simple demo AI logic
+let output = "";
+
+if(input.includes("hello")){
+output = "Hello! How can I help you today?";
+}
+else if(input.includes("name")){
+output = "I am your Free Tools AI assistant (demo version).";
+}
+else if(input.includes("idea")){
+output = "You can start a tools website, YouTube channel, or online business.";
+}
+else{
+output = "This is a demo AI tool. Real AI integration can be added later.";
+}
+
+document.getElementById('result').innerText = output;
+}
+</script>
+
+</body>
+</html>
