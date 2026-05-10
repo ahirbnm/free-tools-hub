@@ -12,19 +12,15 @@ body{
     background:#0b1220;
     display:flex;
     justify-content:center;
-    align-items:flex-start;
-    min-height:100vh;
-    padding:30px;
-    overflow-x:hidden;
+    padding:25px;
 }
 
-/* CARD LAYOUT FIX */
 .container{
     width:100%;
-    max-width:750px;
+    max-width:780px;
     background:#0f1b2d;
-    border-radius:20px;
     padding:25px;
+    border-radius:20px;
     box-shadow:0 10px 30px rgba(0,0,0,0.5);
 }
 
@@ -32,32 +28,25 @@ body{
 header{
     text-align:center;
     color:white;
-    font-size:26px;
+    font-size:28px;
     font-weight:bold;
-    margin-bottom:5px;
 }
 
 .sub{
     text-align:center;
     color:#9fb3c8;
-    font-size:14px;
     margin-bottom:20px;
 }
 
-/* UPLOAD BOX FIX (NO BREAK) */
+/* UPLOAD */
 .upload-box{
     border:2px dashed #3b82f6;
     background:#111c2e;
-    padding:35px;
+    padding:40px;
     text-align:center;
     border-radius:15px;
     cursor:pointer;
     color:white;
-    transition:0.3s;
-}
-
-.upload-box:hover{
-    background:#16263d;
 }
 
 .upload-box input{
@@ -66,15 +55,15 @@ header{
 
 /* INPUTS */
 .controls{
-    margin-top:15px;
     display:grid;
     gap:10px;
+    margin-top:15px;
 }
 
 .controls input{
-    padding:10px;
+    padding:12px;
     border-radius:8px;
-    border:1px solid #2c3e50;
+    border:none;
     background:#111c2e;
     color:white;
 }
@@ -82,8 +71,8 @@ header{
 /* BUTTON */
 .btn{
     width:100%;
-    margin-top:15px;
     padding:12px;
+    margin-top:15px;
     background:#00a8ff;
     color:white;
     border:none;
@@ -96,36 +85,50 @@ header{
     background:#0090dd;
 }
 
-/* OUTPUT */
-.output{
+/* LIVE PREVIEW */
+.preview-box{
     margin-top:20px;
     text-align:center;
 }
 
-.output img{
+.preview-box img{
     max-width:100%;
-    margin-top:10px;
     border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.4);
+    box-shadow:0 0 15px rgba(0,0,0,0.4);
 }
 
-/* INFO BOX */
+/* DOWNLOAD BUTTON BIG */
+.download-btn{
+    margin-top:10px;
+    padding:12px;
+    background:#22c55e;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    display:inline-block;
+}
+
+/* INFO BIGGER */
 .info{
     margin-top:25px;
     background:#111c2e;
-    padding:15px;
+    padding:20px;
     border-radius:12px;
     color:#cbd5e1;
+    line-height:1.6;
 }
 
 .info h3{
     color:white;
+    font-size:20px;
 }
 
-/* FIX OVERFLOW */
-html, body{
-    overflow-x:hidden;
+.info li{
+    margin-bottom:8px;
 }
+
 </style>
 </head>
 
@@ -134,32 +137,34 @@ html, body{
 <div class="container">
 
 <header>📷 Image Resize Tool</header>
-<div class="sub">Resize Your Images Online Instantly</div>
+<div class="sub">Live Resize + Download Image Instantly</div>
 
 <!-- UPLOAD -->
 <div class="upload-box" id="dropArea">
-    📤 Click OR Drag Image Here
-    <input type="file" id="fileInput" accept="image/*">
+📤 Click or Drag Image Here
+<input type="file" id="fileInput" accept="image/*">
 </div>
 
 <!-- SIZE INPUT -->
 <div class="controls">
-    <input type="number" id="width" placeholder="Enter Width (px)">
-    <input type="number" id="height" placeholder="Enter Height (px)">
+<input type="number" id="width" placeholder="Enter Width (px)">
+<input type="number" id="height" placeholder="Enter Height (px)">
 </div>
 
 <button class="btn" onclick="resizeImage()">Resize Image</button>
 
-<div class="output" id="output"></div>
+<!-- LIVE PREVIEW -->
+<div class="preview-box" id="preview"></div>
 
 <!-- HOW TO USE -->
 <div class="info">
-<h3>📌 How to Use</h3>
+<h3>📌 How to Use (Step by Step)</h3>
 <ul>
-<li>Select or drag image</li>
-<li>Enter width & height</li>
-<li>Click Resize button</li>
-<li>Download result</li>
+<li>1. Click or drag image in upload box</li>
+<li>2. Enter width and height in pixels</li>
+<li>3. Click “Resize Image” button</li>
+<li>4. You will see live resized preview</li>
+<li>5. Click Download button to save image</li>
 </ul>
 </div>
 
@@ -167,10 +172,11 @@ html, body{
 <div class="info">
 <h3>⚡ Features</h3>
 <ul>
-<li>✔ Fast resizing</li>
-<li>✔ No quality loss</li>
+<li>✔ Live preview resizing</li>
+<li>✔ High quality output</li>
 <li>✔ Drag & drop support</li>
-<li>✔ Works offline</li>
+<li>✔ Instant download</li>
+<li>✔ Works in mobile & desktop</li>
 </ul>
 </div>
 
@@ -181,10 +187,8 @@ html, body{
 const fileInput = document.getElementById("fileInput");
 const dropArea = document.getElementById("dropArea");
 
-/* CLICK FIX */
 dropArea.addEventListener("click", ()=> fileInput.click());
 
-/* DRAG DROP FIX */
 dropArea.addEventListener("dragover",(e)=>{
     e.preventDefault();
 });
@@ -198,7 +202,7 @@ function resizeImage(){
 
     const file = fileInput.files[0];
     if(!file){
-        alert("Please select image");
+        alert("Select image first");
         return;
     }
 
@@ -206,7 +210,7 @@ function resizeImage(){
     const height = document.getElementById("height").value;
 
     if(!width || !height){
-        alert("Enter width & height");
+        alert("Enter width and height");
         return;
     }
 
@@ -229,15 +233,15 @@ function resizeImage(){
 
             const resized = canvas.toDataURL("image/png");
 
-            const output = document.getElementById("output");
-            output.innerHTML = "";
+            const preview = document.getElementById("preview");
+            preview.innerHTML = "";
 
             const newImg = document.createElement("img");
             newImg.src = resized;
 
             const btn = document.createElement("button");
-            btn.className = "btn";
-            btn.innerText = "Download Image";
+            btn.className = "download-btn";
+            btn.innerText = "⬇ Download Image";
 
             btn.onclick = ()=>{
                 const a = document.createElement("a");
@@ -246,8 +250,9 @@ function resizeImage(){
                 a.click();
             };
 
-            output.appendChild(newImg);
-            output.appendChild(btn);
+            preview.appendChild(newImg);
+            preview.appendChild(document.createElement("br"));
+            preview.appendChild(btn);
         };
     };
 
