@@ -1,394 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced PDF to JPG Converter</title>
 
-<title>PDF To JPG Converter Online Free | Free Tools Hub</title>
-
-<meta name="description" content="Convert PDF to JPG online free using Free Tools Hub. Fast PDF to image converter with high quality output.">
-
-<meta name="keywords" content="pdf to jpg, pdf converter, convert pdf to image, pdf to png, online pdf tool">
-
-<meta name="robots" content="index, follow">
-
-<meta property="og:title" content="PDF To JPG Converter">
-
-<meta property="og:description" content="Convert PDF pages into JPG images online free.">
-
-<meta property="og:type" content="website">
-
-<meta property="og:image" content="logo.png">
-
-<link rel="icon" href="logo.png">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
-}
-
 body{
-background:linear-gradient(135deg,#07111f,#132238,#1d3557);
-color:white;
-padding:20px;
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#eef2f7;
 }
 
-.wrapper{
-max-width:1200px;
-margin:auto;
+header{
+    background:#007bff;
+    color:white;
+    padding:15px;
+    text-align:center;
+    font-size:22px;
 }
 
-.box{
-max-width:700px;
-margin:auto;
-background:#132238;
-padding:35px;
-border-radius:28px;
-box-shadow:0 10px 40px rgba(0,0,0,0.4);
-text-align:center;
+.container{
+    max-width:900px;
+    margin:20px auto;
+    padding:20px;
 }
 
-h1{
-font-size:36px;
-margin-bottom:10px;
+/* UPLOAD BOX */
+.upload-area{
+    border:3px dashed #007bff;
+    border-radius:15px;
+    background:white;
+    padding:40px;
+    text-align:center;
+    cursor:pointer;
+    transition:0.3s;
 }
 
-.top-text{
-margin-bottom:25px;
-color:#d0dae5;
+.upload-area:hover{
+    background:#f0f8ff;
 }
 
-.upload{
-background:#0b1727;
-padding:35px;
-border:2px dashed #3d5a80;
-border-radius:18px;
-cursor:pointer;
-transition:0.3s;
+.upload-area.dragover{
+    background:#d9ecff;
+    border-color:#0056b3;
 }
 
-.upload:hover{
-background:#102033;
-transform:scale(1.02);
+.upload-area input{
+    display:none;
 }
 
-.upload i{
-font-size:60px;
-margin-bottom:15px;
-color:#00b4ff;
+.upload-text{
+    font-size:18px;
+    color:#555;
 }
 
-input[type="file"]{
-display:none;
-}
-
+/* BUTTON */
 button{
-width:100%;
-padding:15px;
-margin-top:20px;
-border:none;
-border-radius:14px;
-background:#00b4ff;
-color:white;
-font-size:17px;
-cursor:pointer;
-font-weight:600;
-transition:0.3s;
+    margin-top:15px;
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    background:#007bff;
+    color:white;
+    cursor:pointer;
 }
 
 button:hover{
-background:#0095d9;
-transform:scale(1.03);
+    background:#0056b3;
 }
 
-#out{
-margin-top:30px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+/* PROGRESS */
+#progress{
+    margin-top:10px;
+    height:10px;
+    background:#ddd;
+    border-radius:5px;
+    overflow:hidden;
+    display:none;
 }
 
-.page-box{
-background:#0b1727;
-padding:15px;
-border-radius:18px;
+#bar{
+    height:100%;
+    width:0%;
+    background:#28a745;
 }
 
-canvas{
-width:100%;
-border-radius:12px;
-background:white;
+/* OUTPUT */
+.output{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap:10px;
+}
+
+.card{
+    background:white;
+    padding:10px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.card img{
+    width:100%;
+    border-radius:5px;
 }
 
 .download-btn{
-display:inline-block;
-margin-top:12px;
-padding:12px 18px;
-background:#00b4ff;
-color:white;
-text-decoration:none;
-border-radius:12px;
-font-size:14px;
-transition:0.3s;
+    margin-top:5px;
+    width:100%;
+    padding:8px;
+    background:#28a745;
 }
-
-.download-btn:hover{
-background:#0095d9;
-}
-
-.info{
-margin-top:50px;
-background:#132238;
-padding:35px;
-border-radius:24px;
-line-height:1.9;
-color:#d0dae5;
-}
-
-.info h2{
-margin-bottom:15px;
-color:white;
-font-size:28px;
-}
-
-.info h3{
-margin-top:22px;
-margin-bottom:10px;
-color:white;
-}
-
-.info ul{
-padding-left:20px;
-margin-bottom:20px;
-}
-
-.info li{
-margin-bottom:10px;
-}
-
-footer{
-text-align:center;
-margin-top:40px;
-padding-bottom:20px;
-color:#b6c2d1;
-}
-
-@media(max-width:700px){
-
-.box{
-padding:25px;
-}
-
-h1{
-font-size:28px;
-}
-
-.info{
-padding:25px;
-}
-
-}
-
 </style>
-
 </head>
 
 <body>
 
-<div class="wrapper">
+<header>PDF to JPG Converter Pro</header>
 
-<div class="box">
+<div class="container">
 
-<h1><i class="fa-solid fa-file-image"></i> PDF To JPG</h1>
-
-<p class="top-text">
-Convert PDF pages into JPG images instantly online.
-</p>
-
-<label class="upload" for="file">
-
-<i class="fa-solid fa-file-pdf"></i>
-
-<h2>Upload PDF File</h2>
-
-<p>Select PDF to convert into images</p>
-
-</label>
-
-<input type="file" id="file" accept="application/pdf">
-
-<button onclick="convert()">
-<i class="fa-solid fa-wand-magic-sparkles"></i>
- Convert PDF
-</button>
-
-<div id="out"></div>
-
+<div class="upload-area" id="uploadArea">
+    <div class="upload-text">
+        📤 Drag & Drop PDF here OR Click to Upload
+    </div>
+    <input type="file" id="fileInput" accept="application/pdf">
 </div>
 
-<!-- SEO SECTION -->
+<button onclick="convertPDF()">Convert PDF</button>
 
-<div class="info">
-
-<h2>About PDF To JPG Tool</h2>
-
-<p>
-This free PDF To JPG converter helps users convert PDF pages into high quality JPG images online instantly. 
-You can use this tool for study material, documents, notes and image sharing.
-</p>
-
-<h2>How To Use</h2>
-
-<ul>
-<li>Upload your PDF document</li>
-<li>Click Convert PDF button</li>
-<li>Wait for pages to load</li>
-<li>Download JPG images instantly</li>
-</ul>
-
-<h2>Features</h2>
-
-<ul>
-<li>Fast PDF conversion</li>
-<li>High quality JPG output</li>
-<li>Mobile friendly design</li>
-<li>Secure browser processing</li>
-<li>No signup required</li>
-<li>Unlimited free usage</li>
-</ul>
-
-<h2>Why Use PDF To JPG?</h2>
-
-<p>
-JPG images are easier to share on social media, WhatsApp and websites. 
-This tool helps convert PDF pages into images without software installation.
-</p>
-
-<h2>FAQ</h2>
-
-<h3>Is this PDF converter free?</h3>
-
-<p>
-Yes, this tool is 100% free to use.
-</p>
-
-<h3>Can I convert multiple pages?</h3>
-
-<p>
-Yes, all PDF pages are converted into separate JPG images.
-</p>
-
-<h3>Does it work on mobile devices?</h3>
-
-<p>
-Yes, this tool works on phones, tablets and desktops.
-</p>
-
+<div id="progress">
+    <div id="bar"></div>
 </div>
 
-<footer>
-
-© 2026 Free Tools Hub - All Rights Reserved
-
-</footer>
+<div class="output" id="output"></div>
 
 </div>
 
 <script>
 
-function convert(){
+const uploadArea = document.getElementById("uploadArea");
+const fileInput = document.getElementById("fileInput");
 
-const file = document.getElementById('file').files[0];
+uploadArea.addEventListener("click", () => fileInput.click());
 
-if(!file){
-
-alert("Please upload PDF");
-
-return;
-
-}
-
-const output = document.getElementById('out');
-
-output.innerHTML = "";
-
-const reader = new FileReader();
-
-reader.onload = function(){
-
-const data = new Uint8Array(this.result);
-
-pdfjsLib.getDocument(data).promise.then(pdf=>{
-
-for(let i=1;i<=pdf.numPages;i++){
-
-pdf.getPage(i).then(page=>{
-
-const viewport = page.getViewport({scale:1.5});
-
-const canvas = document.createElement('canvas');
-
-const ctx = canvas.getContext('2d');
-
-canvas.width = viewport.width;
-
-canvas.height = viewport.height;
-
-page.render({
-
-canvasContext:ctx,
-viewport:viewport
-
-}).promise.then(()=>{
-
-const box = document.createElement('div');
-
-box.className = "page-box";
-
-const download = document.createElement('a');
-
-download.innerHTML = '<i class="fa-solid fa-download"></i> Download JPG';
-
-download.className = "download-btn";
-
-download.href = canvas.toDataURL("image/jpeg");
-
-download.download = "page-"+i+".jpg";
-
-box.appendChild(canvas);
-
-box.appendChild(download);
-
-output.appendChild(box);
-
+uploadArea.addEventListener("dragover", (e)=>{
+    e.preventDefault();
+    uploadArea.classList.add("dragover");
 });
 
+uploadArea.addEventListener("dragleave", ()=>{
+    uploadArea.classList.remove("dragover");
 });
 
-}
-
+uploadArea.addEventListener("drop", (e)=>{
+    e.preventDefault();
+    uploadArea.classList.remove("dragover");
+    fileInput.files = e.dataTransfer.files;
 });
 
+function updateProgress(value){
+    document.getElementById("progress").style.display="block";
+    document.getElementById("bar").style.width=value+"%";
 }
 
-reader.readAsArrayBuffer(file);
+function convertPDF(){
 
+    const file = fileInput.files[0];
+    if(!file){
+        alert("Select PDF first");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(){
+
+        const typed = new Uint8Array(this.result);
+
+        pdfjsLib.getDocument(typed).promise.then(async function(pdf){
+
+            const output = document.getElementById("output");
+            output.innerHTML = "";
+
+            let total = pdf.numPages;
+
+            for(let i=1;i<=total;i++){
+
+                updateProgress((i/total)*100);
+
+                let page = await pdf.getPage(i);
+
+                let scale = 1.8;
+                let viewport = page.getViewport({scale:scale});
+
+                let canvas = document.createElement("canvas");
+                let ctx = canvas.getContext("2d");
+
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                await page.render({
+                    canvasContext:ctx,
+                    viewport:viewport
+                }).promise;
+
+                let imgData = canvas.toDataURL("image/jpeg");
+
+                let card = document.createElement("div");
+                card.className="card";
+
+                let img = document.createElement("img");
+                img.src = imgData;
+
+                let btn = document.createElement("button");
+                btn.className="download-btn";
+                btn.innerText="Download JPG";
+
+                btn.onclick = function(){
+                    let a = document.createElement("a");
+                    a.href = imgData;
+                    a.download = "page-"+i+".jpg";
+                    a.click();
+                }
+
+                card.appendChild(img);
+                card.appendChild(btn);
+
+                output.appendChild(card);
+            }
+
+            updateProgress(100);
+
+            setTimeout(()=>{
+                document.getElementById("progress").style.display="none";
+            },1000);
+
+        });
+    }
+
+    reader.readAsArrayBuffer(file);
 }
 
 </script>
 
 </body>
-
 </html>
