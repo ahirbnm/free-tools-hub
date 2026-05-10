@@ -1,27 +1,30 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Free Tools Hub - Free Online Image, PDF & AI Tools</title>
+
+<meta name="description" content="Free online tools website for PDF tools, image tools, QR generator, AI tools, password generator, converters and more.">
+<meta name="keywords" content="free tools, image to pdf, qr generator, compress image, pdf tools, online tools, ai tools">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Free Tools Hub">
+
+<meta property="og:title" content="Free Tools Hub">
+<meta property="og:description" content="Modern online free tools website.">
+<meta property="og:image" content="logo.png">
+<meta property="og:type" content="website">
 <meta property="og:site_name" content="Free Tools Hub">
 
-<meta name="google-site-verification" content="sInNrdxE3zHzEle51cvbLDi5DTQOqJ9QV_wRbcxOW18" />
+<meta name="google-site-verification" content="sInNrdxE3zHzEle51cvbLDi5DTQOqJ9QV_wRbcxOW18">
 
-<title>Free Tools Hub | Online Free Tools</title>
+<link rel="icon" href="logo.png" type="image/png">
 
-<meta name="description" content="Free online tools for PDF, image editing, QR generator, AI tools and more.">
-
-<meta name="keywords" content="free tools, image to pdf, compress image, qr generator, ai tools">
-
-<meta name="robots" content="index, follow">
-
-<link rel="icon" type="image/png" href="logo.png">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
 
@@ -32,6 +35,10 @@ box-sizing:border-box;
 font-family:Poppins,sans-serif;
 }
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
 background:#07111f;
 color:white;
@@ -39,67 +46,88 @@ display:flex;
 min-height:100vh;
 }
 
-/* SIDEBAR */
-
 .sidebar{
-width:260px;
+width:270px;
 background:#0b1727;
 padding:25px;
-border-right:1px solid rgba(255,255,255,0.08);
 position:fixed;
 height:100%;
 overflow:auto;
+border-right:1px solid rgba(255,255,255,0.08);
 }
 
 .logo{
 text-align:center;
-margin-bottom:35px;
+margin-bottom:30px;
 }
 
 .logo img{
-width:90px;
-height:90px;
+width:100px;
+height:100px;
 border-radius:50%;
-background:white;
+object-fit:cover;
 padding:5px;
-box-shadow:0 0 20px rgba(0,255,255,0.5);
-margin-bottom:10px;
+background:white;
+box-shadow:0 0 30px rgba(0,255,255,0.35);
 }
 
 .logo h2{
+margin-top:10px;
 font-size:24px;
 }
 
 .search-box{
+position:relative;
 margin-bottom:25px;
 }
 
 .search-box input{
 width:100%;
-padding:12px;
+padding:14px;
 border:none;
-border-radius:12px;
+outline:none;
+border-radius:14px;
 background:#132238;
 color:white;
-outline:none;
+font-size:15px;
+}
+
+#suggestions{
+position:absolute;
+width:100%;
+background:#132238;
+border-radius:12px;
+margin-top:8px;
+overflow:hidden;
+z-index:999;
+}
+
+#suggestions div{
+padding:12px;
+cursor:pointer;
+transition:0.3s;
+}
+
+#suggestions div:hover{
+background:#1d3557;
 }
 
 .menu-title{
 font-size:13px;
-color:#8fa3bf;
-margin-top:20px;
-margin-bottom:10px;
 text-transform:uppercase;
+color:#94a3b8;
+margin-bottom:10px;
+margin-top:20px;
 }
 
 .menu a{
 display:block;
 padding:14px;
+background:#132238;
 margin-bottom:12px;
-border-radius:12px;
 text-decoration:none;
 color:white;
-background:#132238;
+border-radius:14px;
 transition:0.3s;
 }
 
@@ -108,26 +136,22 @@ background:#1d3557;
 transform:translateX(5px);
 }
 
-/* MAIN */
-
 .main{
-margin-left:260px;
+margin-left:270px;
 width:100%;
 padding:30px;
 }
 
-/* HERO */
-
 .hero{
 background:linear-gradient(135deg,#132238,#1d3557);
-padding:45px;
-border-radius:25px;
+padding:60px;
+border-radius:28px;
 text-align:center;
-box-shadow:0 0 25px rgba(0,255,255,0.08);
+box-shadow:0 0 30px rgba(0,255,255,0.08);
 }
 
 .hero h1{
-font-size:50px;
+font-size:52px;
 margin-bottom:15px;
 }
 
@@ -136,26 +160,24 @@ font-size:18px;
 color:#d0dae5;
 }
 
-/* TOOLS */
-
 .tools{
 margin-top:35px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:22px;
 }
 
 .card{
 background:#132238;
-padding:25px;
-border-radius:22px;
-transition:0.3s;
-border:1px solid rgba(255,255,255,0.08);
+padding:24px;
+border-radius:24px;
+transition:0.4s;
+border:1px solid rgba(255,255,255,0.06);
 }
 
 .card:hover{
-transform:translateY(-8px);
-box-shadow:0 0 25px rgba(0,255,255,0.15);
+transform:translateY(-10px);
+box-shadow:0 0 35px rgba(0,255,255,0.15);
 }
 
 .card a{
@@ -163,28 +185,49 @@ text-decoration:none;
 color:white;
 }
 
-.icon{
-font-size:45px;
-margin-bottom:15px;
+.tool-icon{
+width:80px;
+height:80px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:20px;
+font-size:34px;
+background:linear-gradient(135deg,#1d3557,#132238);
+margin-bottom:18px;
+box-shadow:0 0 25px rgba(0,255,255,0.12);
 }
 
 .card h2{
-font-size:24px;
 margin-bottom:10px;
+font-size:23px;
 }
 
 .card p{
 font-size:14px;
 color:#b6c2d1;
+line-height:1.7;
+}
+
+.info-section{
+margin-top:40px;
+background:#132238;
+padding:30px;
+border-radius:24px;
+line-height:1.9;
+color:#d0dae5;
+}
+
+.info-section h2{
+margin-bottom:12px;
 }
 
 footer{
 margin-top:40px;
+padding:20px;
 text-align:center;
 color:#94a3b8;
 }
-
-/* MOBILE */
 
 @media(max-width:900px){
 
@@ -196,8 +239,6 @@ flex-direction:column;
 width:100%;
 height:auto;
 position:relative;
-border-right:none;
-border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 .main{
@@ -206,7 +247,7 @@ padding:20px;
 }
 
 .hero h1{
-font-size:35px;
+font-size:36px;
 }
 
 }
@@ -217,272 +258,139 @@ font-size:35px;
 
 <body>
 
-<!-- SIDEBAR -->
-
 <div class="sidebar">
 
 <div class="logo">
-
-<img src="logo.png">
-
+<img src="logo.png" alt="Free Tools Hub Logo">
 <h2>Free Tools Hub</h2>
-
 </div>
 
 <div class="search-box">
-
-<input type="text" placeholder="Search tools...">
-
+<input type="text" id="searchInput" placeholder="Search tools...">
+<div id="suggestions"></div>
 </div>
 
 <div class="menu">
 
-<div class="menu-title">Home</div>
+<div class="menu-title">Tools</div>
 
-<a href="index.html">🏠 Home</a>
+<a href="image-to-pdf.html"><i class="fa-solid fa-file-pdf"></i> Image To PDF</a>
+<a href="compress-image.html"><i class="fa-solid fa-compress"></i> Compress Image</a>
+<a href="resize-image.html"><i class="fa-solid fa-expand"></i> Resize Image</a>
+<a href="pdf-to-jpg.html"><i class="fa-solid fa-file-image"></i> PDF To JPG</a>
+<a href="jpg-to-png.html"><i class="fa-solid fa-image"></i> JPG To PNG</a>
+<a href="qr-generator.html"><i class="fa-solid fa-qrcode"></i> QR Generator</a>
+<a href="password-generator.html"><i class="fa-solid fa-lock"></i> Password Generator</a>
+<a href="word-counter.html"><i class="fa-solid fa-file-lines"></i> Word Counter</a>
+<a href="age-calculator.html"><i class="fa-solid fa-calendar-days"></i> Age Calculator</a>
+<a href="bmi-calculator.html"><i class="fa-solid fa-weight-scale"></i> BMI Calculator</a>
+<a href="color-picker.html"><i class="fa-solid fa-palette"></i> Color Picker</a>
+<a href="text-to-speech.html"><i class="fa-solid fa-volume-high"></i> Text To Speech</a>
+<a href="ai-text-tool.html"><i class="fa-solid fa-robot"></i> AI Text Tool</a>
+<a href="unit-converter.html"><i class="fa-solid fa-ruler-combined"></i> Unit Converter</a>
 
-<div class="menu-title">Most Used Tools</div>
+<div class="menu-title">Important</div>
 
-<a href="image-to-pdf.html">📄 Image To PDF</a>
-
-<a href="compress-image.html">🖼 Compress Image</a>
-
-<a href="resize-image.html">📏 Resize Image</a>
-
-<a href="pdf-to-jpg.html">📑 PDF To JPG</a>
-
-<a href="jpg-to-png.html">🖼 JPG To PNG</a>
-
-<a href="qr-generator.html">🔳 QR Generator</a>
-
-<a href="password-generator.html">🔐 Password Generator</a>
-
-<a href="word-counter.html">📝 Word Counter</a>
-
-<a href="age-calculator.html">🎂 Age Calculator</a>
-
-<a href="bmi-calculator.html">⚖️ BMI Calculator</a>
-
-<a href="color-picker.html">🎨 Color Picker</a>
-
-<a href="text-to-speech.html">🔊 Text To Speech</a>
-
-<a href="ai-text-tool.html">🤖 AI Text Tool</a>
-
-<a href="unit-converter.html">📐 Unit Converter</a>
+<a href="privacy-policy.html">Privacy Policy</a>
+<a href="terms.html">Terms & Conditions</a>
+<a href="contact.html">Contact Us</a>
 
 </div>
 
 </div>
-
-<!-- MAIN -->
 
 <div class="main">
 
 <div class="hero">
-
 <h1>WELCOME TO FREE TOOLS HUB</h1>
-
-<p>
-Fast • Secure • Modern Online Tools
-</p>
-
+<p>Fast • Secure • Modern Online Tools</p>
 </div>
 
 <div class="tools">
 
-<!-- CARD -->
+<div class="card"><a href="image-to-pdf.html"><div class="tool-icon"><i class="fa-solid fa-file-pdf"></i></div><h2>Image To PDF</h2><p>Convert images into PDF instantly online.</p></a></div>
+<div class="card"><a href="compress-image.html"><div class="tool-icon"><i class="fa-solid fa-compress"></i></div><h2>Compress Image</h2><p>Reduce image size without losing quality.</p></a></div>
+<div class="card"><a href="resize-image.html"><div class="tool-icon"><i class="fa-solid fa-expand"></i></div><h2>Resize Image</h2><p>Resize image dimensions quickly online.</p></a></div>
+<div class="card"><a href="pdf-to-jpg.html"><div class="tool-icon"><i class="fa-solid fa-file-image"></i></div><h2>PDF To JPG</h2><p>Convert PDF pages into JPG images.</p></a></div>
+<div class="card"><a href="jpg-to-png.html"><div class="tool-icon"><i class="fa-solid fa-image"></i></div><h2>JPG To PNG</h2><p>Convert JPG images into PNG format.</p></a></div>
+<div class="card"><a href="qr-generator.html"><div class="tool-icon"><i class="fa-solid fa-qrcode"></i></div><h2>QR Generator</h2><p>Create QR codes instantly online.</p></a></div>
+<div class="card"><a href="password-generator.html"><div class="tool-icon"><i class="fa-solid fa-lock"></i></div><h2>Password Generator</h2><p>Create strong secure passwords instantly.</p></a></div>
+<div class="card"><a href="word-counter.html"><div class="tool-icon"><i class="fa-solid fa-file-lines"></i></div><h2>Word Counter</h2><p>Count words and characters online.</p></a></div>
+<div class="card"><a href="age-calculator.html"><div class="tool-icon"><i class="fa-solid fa-calendar-days"></i></div><h2>Age Calculator</h2><p>Calculate your exact age instantly.</p></a></div>
+<div class="card"><a href="bmi-calculator.html"><div class="tool-icon"><i class="fa-solid fa-weight-scale"></i></div><h2>BMI Calculator</h2><p>Check your body mass index online.</p></a></div>
+<div class="card"><a href="color-picker.html"><div class="tool-icon"><i class="fa-solid fa-palette"></i></div><h2>Color Picker</h2><p>Pick and copy colors easily.</p></a></div>
+<div class="card"><a href="text-to-speech.html"><div class="tool-icon"><i class="fa-solid fa-volume-high"></i></div><h2>Text To Speech</h2><p>Convert text into voice instantly.</p></a></div>
+<div class="card"><a href="ai-text-tool.html"><div class="tool-icon"><i class="fa-solid fa-robot"></i></div><h2>AI Text Tool</h2><p>Generate smart AI text quickly.</p></a></div>
+<div class="card"><a href="unit-converter.html"><div class="tool-icon"><i class="fa-solid fa-ruler-combined"></i></div><h2>Unit Converter</h2><p>Convert units online instantly.</p></a></div>
 
-<div class="card">
-<a href="image-to-pdf.html">
 
-<div class="icon">📄</div>
-
-<h2>Image To PDF</h2>
-
-<p>Convert images into PDF instantly online.</p>
-
-</a>
 </div>
 
-<!-- CARD -->
-
-<div class="card">
-<a href="compress-image.html">
-
-<div class="icon">🖼</div>
-
-<h2>Compress Image</h2>
-
-<p>Reduce image size without losing quality.</p>
-
-</a>
-</div>
-
-<!-- CARD -->
-
-<div class="card">
-<a href="resize-image.html">
-
-<div class="icon">📏</div>
-
-<h2>Resize Image</h2>
-
-<p>Resize image dimensions quickly online.</p>
-
-</a>
-</div>
-
-<!-- CARD -->
-
-<div class="card">
-<a href="pdf-to-jpg.html">
-
-<div class="icon">📑</div>
-
-<h2>PDF To JPG</h2>
-
-<p>Convert PDF pages into JPG images.</p>
-
-</a>
-</div>
-
-<!-- CARD -->
-
-<div class="card">
-<a href="jpg-to-png.html">
-
-<div class="icon">🖼</div>
-
-<h2>JPG To PNG</h2>
-
-<p>Convert JPG images into PNG format.</p>
-
-</a>
-</div>
-
-<!-- CARD -->
-
-<div class="card">
-<a href="qr-generator.html">
-
-<div class="icon">🔳</div>
-
-<h2>QR Generator</h2>
-
-<p>Create QR codes online instantly.</p>
-
-</a>
-</div>
-
-<!-- NEW TOOLS -->
-
-<div class="card">
-<a href="password-generator.html">
-
-<div class="icon">🔐</div>
-
-<h2>Password Generator</h2>
-
-<p>Create strong secure passwords instantly.</p>
-
-</a>
-</div>
-
-<div class="card">
-<a href="word-counter.html">
-
-<div class="icon">📝</div>
-
-<h2>Word Counter</h2>
-
-<p>Count words and characters online.</p>
-
-</a>
-</div>
-
-<div class="card">
-<a href="age-calculator.html">
-
-<div class="icon">🎂</div>
-
-<h2>Age Calculator</h2>
-
-<p>Calculate your exact age instantly.</p>
-
-</a>
-</div>
-
-<div class="card">
-<a href="bmi-calculator.html">
-
-<div class="icon">⚖️</div>
-
-<h2>BMI Calculator</h2>
-
-<p>Check your body mass index online.</p>
-
-</a>
-</div>
-
-<div class="card">
-<a href="color-picker.html">
-
-<div class="icon">🎨</div>
-
-<h2>Color Picker</h2>
-
-<p>Pick and copy colors easily.</p>
-
-</a>
-</div>
-
-<div class="card">
-<a href="text-to-speech.html">
-
-<div class="icon">🔊</div>
-
-<h2>Text To Speech</h2>
-
-<p>Convert text into voice instantly.</p>
-
-</a>
-</div>
-
-<div class="card">
-<a href="ai-text-tool.html">
-
-<div class="icon">🤖</div>
-
-<h2>AI Text Tool</h2>
-
-<p>Generate smart AI text quickly.</p>
-
-</a>
-</div>
-
-<div class="card">
-<a href="unit-converter.html">
-
-<div class="icon">📐</div>
-
-<h2>Unit Converter</h2>
-
-<p>Convert units online instantly.</p>
-
-</a>
-</div>
-
+<div class="info-section">
+<h2>About Free Tools Hub</h2>
+<p>
+Free Tools Hub is a fast and secure online tools website where users can convert PDFs, edit images, generate QR codes, create passwords, use AI tools and more.
+</p>
 </div>
 
 <footer>
-
-© 2026 Free Tools Hub
-
+© 2026 Free Tools Hub - All Rights Reserved
 </footer>
 
 </div>
 
-</body>
+<script>
 
+const tools=[
+{name:'Image To PDF',link:'image-to-pdf.html'},
+{name:'Compress Image',link:'compress-image.html'},
+{name:'Resize Image',link:'resize-image.html'},
+{name:'PDF To JPG',link:'pdf-to-jpg.html'},
+{name:'JPG To PNG',link:'jpg-to-png.html'},
+{name:'QR Generator',link:'qr-generator.html'},
+{name:'Password Generator',link:'password-generator.html'},
+{name:'Word Counter',link:'word-counter.html'},
+{name:'Age Calculator',link:'age-calculator.html'},
+{name:'BMI Calculator',link:'bmi-calculator.html'},
+{name:'Color Picker',link:'color-picker.html'},
+{name:'Text To Speech',link:'text-to-speech.html'},
+{name:'AI Text Tool',link:'ai-text-tool.html'},
+{name:'Unit Converter',link:'unit-converter.html'}
+];
+
+const searchInput=document.getElementById('searchInput');
+const suggestions=document.getElementById('suggestions');
+
+searchInput.addEventListener('input',function(){
+
+let value=this.value.toLowerCase();
+suggestions.innerHTML='';
+
+if(value==='') return;
+
+tools.forEach(tool=>{
+
+if(tool.name.toLowerCase().includes(value)){
+
+const div=document.createElement('div');
+
+div.textContent=tool.name;
+
+div.onclick=()=>{
+window.location.href=tool.link;
+};
+
+suggestions.appendChild(div);
+
+}
+
+});
+
+});
+
+</script>
+
+</body>
 </html>
+
+
