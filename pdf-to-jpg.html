@@ -3,97 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Advanced PDF to JPG Converter</title>
+<title>PDF to JPG Converter Tool</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
 <style>
 body{
-    font-family: Arial, sans-serif;
     margin:0;
-    background:#eef2f7;
+    font-family: Arial;
+    background:#f4f6f9;
 }
 
 header{
     background:#007bff;
     color:white;
-    padding:15px;
     text-align:center;
+    padding:15px;
     font-size:22px;
 }
 
 .container{
-    max-width:900px;
-    margin:20px auto;
+    max-width:1000px;
+    margin:auto;
     padding:20px;
 }
 
-/* UPLOAD BOX */
-.upload-area{
-    border:3px dashed #007bff;
-    border-radius:15px;
+/* UPLOAD */
+.upload-box{
+    border:2px dashed #007bff;
     background:white;
     padding:40px;
     text-align:center;
+    border-radius:12px;
     cursor:pointer;
-    transition:0.3s;
 }
 
-.upload-area:hover{
-    background:#f0f8ff;
+.upload-box:hover{
+    background:#eaf4ff;
 }
 
-.upload-area.dragover{
-    background:#d9ecff;
-    border-color:#0056b3;
-}
-
-.upload-area input{
+.upload-box input{
     display:none;
 }
 
-.upload-text{
-    font-size:18px;
-    color:#555;
-}
-
 /* BUTTON */
-button{
+.btn{
     margin-top:15px;
     padding:10px 20px;
-    border:none;
-    border-radius:8px;
     background:#007bff;
     color:white;
+    border:none;
+    border-radius:8px;
     cursor:pointer;
 }
 
-button:hover{
+.btn:hover{
     background:#0056b3;
 }
 
 /* PROGRESS */
-#progress{
-    margin-top:10px;
+.progress{
+    width:100%;
     height:10px;
     background:#ddd;
-    border-radius:5px;
-    overflow:hidden;
+    border-radius:10px;
+    margin-top:15px;
     display:none;
 }
 
-#bar{
+.bar{
     height:100%;
     width:0%;
-    background:#28a745;
+    background:green;
 }
 
 /* OUTPUT */
 .output{
-    margin-top:20px;
     display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-    gap:10px;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+    margin-top:20px;
 }
 
 .card{
@@ -105,69 +94,114 @@ button:hover{
 
 .card img{
     width:100%;
-    border-radius:5px;
+    border-radius:8px;
 }
 
-.download-btn{
-    margin-top:5px;
+.download{
     width:100%;
+    margin-top:8px;
     padding:8px;
     background:#28a745;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+/* INFO BOX */
+.info{
+    background:white;
+    margin-top:25px;
+    padding:20px;
+    border-radius:10px;
+}
+
+.info h3{
+    margin-bottom:10px;
+    color:#333;
+}
+
+.info ul{
+    margin:0;
+    padding-left:20px;
 }
 </style>
 </head>
 
 <body>
 
-<header>PDF to JPG Converter Pro</header>
+<header>PDF to JPG Converter Tool</header>
 
 <div class="container">
 
-<div class="upload-area" id="uploadArea">
-    <div class="upload-text">
-        📤 Drag & Drop PDF here OR Click to Upload
-    </div>
+<!-- UPLOAD -->
+<div class="upload-box" id="dropArea">
+    📤 Click or Drop PDF Here
     <input type="file" id="fileInput" accept="application/pdf">
 </div>
 
-<button onclick="convertPDF()">Convert PDF</button>
+<button class="btn" onclick="convert()">Convert PDF</button>
 
-<div id="progress">
-    <div id="bar"></div>
+<!-- PROGRESS -->
+<div class="progress" id="progress">
+    <div class="bar" id="bar"></div>
 </div>
 
+<!-- OUTPUT -->
 <div class="output" id="output"></div>
+
+<!-- HOW TO USE -->
+<div class="info">
+    <h3>📌 How to Use</h3>
+    <ul>
+        <li>Click upload box and select PDF file</li>
+        <li>Or drag & drop PDF into box</li>
+        <li>Click Convert PDF button</li>
+        <li>Wait for processing</li>
+        <li>Download JPG images one by one</li>
+    </ul>
+</div>
+
+<!-- BENEFITS -->
+<div class="info">
+    <h3>⚡ Features & Benefits</h3>
+    <ul>
+        <li>✔ Fast PDF to JPG conversion</li>
+        <li>✔ No software required</li>
+        <li>✔ Works directly in browser</li>
+        <li>✔ High quality image output</li>
+        <li>✔ Supports multiple pages</li>
+        <li>✔ Free and easy to use</li>
+    </ul>
+</div>
 
 </div>
 
 <script>
 
-const uploadArea = document.getElementById("uploadArea");
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
 const fileInput = document.getElementById("fileInput");
+const dropArea = document.getElementById("dropArea");
 
-uploadArea.addEventListener("click", () => fileInput.click());
+dropArea.addEventListener("click", ()=> fileInput.click());
 
-uploadArea.addEventListener("dragover", (e)=>{
+dropArea.addEventListener("dragover",(e)=>{
     e.preventDefault();
-    uploadArea.classList.add("dragover");
 });
 
-uploadArea.addEventListener("dragleave", ()=>{
-    uploadArea.classList.remove("dragover");
-});
-
-uploadArea.addEventListener("drop", (e)=>{
+dropArea.addEventListener("drop",(e)=>{
     e.preventDefault();
-    uploadArea.classList.remove("dragover");
     fileInput.files = e.dataTransfer.files;
 });
 
-function updateProgress(value){
+function progress(val){
     document.getElementById("progress").style.display="block";
-    document.getElementById("bar").style.width=value+"%";
+    document.getElementById("bar").style.width=val+"%";
 }
 
-function convertPDF(){
+async function convert(){
 
     const file = fileInput.files[0];
     if(!file){
@@ -177,70 +211,63 @@ function convertPDF(){
 
     const reader = new FileReader();
 
-    reader.onload = function(){
+    reader.onload = async function(){
 
         const typed = new Uint8Array(this.result);
 
-        pdfjsLib.getDocument(typed).promise.then(async function(pdf){
+        const pdf = await pdfjsLib.getDocument(typed).promise;
 
-            const output = document.getElementById("output");
-            output.innerHTML = "";
+        const output = document.getElementById("output");
+        output.innerHTML="";
 
-            let total = pdf.numPages;
+        for(let i=1;i<=pdf.numPages;i++){
 
-            for(let i=1;i<=total;i++){
+            progress((i/pdf.numPages)*100);
 
-                updateProgress((i/total)*100);
+            const page = await pdf.getPage(i);
 
-                let page = await pdf.getPage(i);
+            const viewport = page.getViewport({scale:1.8});
 
-                let scale = 1.8;
-                let viewport = page.getViewport({scale:scale});
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
 
-                let canvas = document.createElement("canvas");
-                let ctx = canvas.getContext("2d");
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
 
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
+            await page.render({
+                canvasContext:ctx,
+                viewport:viewport
+            }).promise;
 
-                await page.render({
-                    canvasContext:ctx,
-                    viewport:viewport
-                }).promise;
+            const imgData = canvas.toDataURL("image/jpeg");
 
-                let imgData = canvas.toDataURL("image/jpeg");
+            const card = document.createElement("div");
+            card.className="card";
 
-                let card = document.createElement("div");
-                card.className="card";
+            const img = document.createElement("img");
+            img.src = imgData;
 
-                let img = document.createElement("img");
-                img.src = imgData;
+            const btn = document.createElement("button");
+            btn.className="download";
+            btn.innerText="Download JPG";
 
-                let btn = document.createElement("button");
-                btn.className="download-btn";
-                btn.innerText="Download JPG";
+            btn.onclick = ()=>{
+                const a = document.createElement("a");
+                a.href = imgData;
+                a.download = "page-"+i+".jpg";
+                a.click();
+            };
 
-                btn.onclick = function(){
-                    let a = document.createElement("a");
-                    a.href = imgData;
-                    a.download = "page-"+i+".jpg";
-                    a.click();
-                }
+            card.appendChild(img);
+            card.appendChild(btn);
 
-                card.appendChild(img);
-                card.appendChild(btn);
+            output.appendChild(card);
+        }
 
-                output.appendChild(card);
-            }
-
-            updateProgress(100);
-
-            setTimeout(()=>{
-                document.getElementById("progress").style.display="none";
-            },1000);
-
-        });
-    }
+        setTimeout(()=>{
+            document.getElementById("progress").style.display="none";
+        },1000);
+    };
 
     reader.readAsArrayBuffer(file);
 }
