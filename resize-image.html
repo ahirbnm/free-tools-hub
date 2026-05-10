@@ -1,67 +1,448 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<title>Resize Image</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Resize Image Online Free | Free Tools Hub</title>
+
+<meta name="description" content="Resize image online free. Change image width and height easily using Free Tools Hub image resizer tool.">
+
+<meta name="keywords" content="resize image, image resizer, image width height changer, resize photo online">
+
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="Resize Image Online Free">
+
+<meta property="og:description" content="Resize images online easily with custom width and height.">
+
+<meta property="og:type" content="website">
+
+<meta property="og:image" content="logo.png">
+
 <link rel="icon" href="logo.png">
 
-<style>
-body{font-family:Arial;background:#07111f;color:white;padding:20px;text-align:center}
-.box{max-width:500px;margin:auto;background:#132238;padding:25px;border-radius:20px}
-input,button{width:100%;padding:14px;margin-top:10px;border:none;border-radius:10px}
-button{background:#00b4ff;color:white}
-canvas{margin-top:15px;max-width:100%}
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-.info{margin-top:15px;background:#0b1727;padding:15px;border-radius:10px;text-align:left}
-.info h2{color:#00b4ff}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#07111f,#132238,#1d3557);
+color:white;
+padding:20px;
+}
+
+.wrapper{
+max-width:1100px;
+margin:auto;
+}
+
+.box{
+max-width:650px;
+margin:auto;
+background:#132238;
+padding:35px;
+border-radius:28px;
+box-shadow:0 10px 40px rgba(0,0,0,0.4);
+}
+
+h1{
+font-size:34px;
+margin-bottom:10px;
+text-align:center;
+}
+
+.top-text{
+text-align:center;
+margin-bottom:25px;
+color:#cfd8e3;
+}
+
+.upload{
+background:#0b1727;
+padding:30px;
+border:2px dashed #3d5a80;
+border-radius:18px;
+text-align:center;
+cursor:pointer;
+transition:0.3s;
+}
+
+.upload:hover{
+transform:scale(1.02);
+background:#102033;
+}
+
+.upload i{
+font-size:55px;
+margin-bottom:15px;
+color:#00b4ff;
+}
+
+input[type="file"]{
+display:none;
+}
+
+.input-group{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+margin-top:20px;
+}
+
+.input-box{
+display:flex;
+flex-direction:column;
+}
+
+.input-box label{
+margin-bottom:8px;
+font-size:14px;
+color:#cfd8e3;
+}
+
+input[type="number"]{
+padding:14px;
+border:none;
+border-radius:12px;
+background:#0b1727;
+color:white;
+font-size:16px;
+outline:none;
+}
+
+button{
+width:100%;
+padding:15px;
+margin-top:22px;
+border:none;
+border-radius:14px;
+background:#00b4ff;
+color:white;
+font-size:17px;
+cursor:pointer;
+font-weight:600;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.03);
+background:#0095d9;
+}
+
+.preview{
+margin-top:25px;
+text-align:center;
+}
+
+.preview img{
+max-width:100%;
+border-radius:15px;
+margin-bottom:15px;
+}
+
+canvas{
+max-width:100%;
+margin-top:15px;
+border-radius:15px;
+background:white;
+}
+
+.size-info{
+margin-top:18px;
+background:#0b1727;
+padding:15px;
+border-radius:14px;
+line-height:1.8;
+color:#d0dae5;
+}
+
+.info{
+margin-top:40px;
+background:#132238;
+padding:35px;
+border-radius:24px;
+line-height:1.9;
+color:#d0dae5;
+}
+
+.info h2{
+margin-bottom:14px;
+color:white;
+}
+
+.info h3{
+margin-top:22px;
+margin-bottom:10px;
+color:white;
+}
+
+.info ul{
+padding-left:20px;
+margin-bottom:20px;
+}
+
+.info li{
+margin-bottom:10px;
+}
+
+footer{
+text-align:center;
+margin-top:40px;
+padding-bottom:20px;
+color:#aebfd3;
+}
+
+@media(max-width:700px){
+
+.input-group{
+grid-template-columns:1fr;
+}
+
+.box{
+padding:25px;
+}
+
+h1{
+font-size:28px;
+}
+
+}
+
 </style>
+
 </head>
 
 <body>
+
+<div class="wrapper">
+
 <div class="box">
-<h1>📏 Resize Image</h1>
 
-<input type="file" id="file">
-<input type="number" id="w" placeholder="Width">
-<input type="number" id="h" placeholder="Height">
+<h1><i class="fa-solid fa-expand"></i> Resize Image</h1>
 
-<button onclick="resize()">Resize</button>
+<p class="top-text">
+Resize images online using custom width and height.
+</p>
+
+<label class="upload" for="file">
+
+<i class="fa-solid fa-cloud-arrow-up"></i>
+
+<h2>Upload Image</h2>
+
+<p>Click to select image</p>
+
+</label>
+
+<input type="file" id="file" accept="image/*">
+
+<div class="preview" id="preview"></div>
+
+<div class="input-group">
+
+<div class="input-box">
+<label>Width (PX)</label>
+<input type="number" id="w" placeholder="Enter Width">
+</div>
+
+<div class="input-box">
+<label>Height (PX)</label>
+<input type="number" id="h" placeholder="Enter Height">
+</div>
+
+</div>
+
+<button onclick="resizeImage()">
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+ Resize Image
+</button>
+
+<button onclick="downloadImage()">
+<i class="fa-solid fa-download"></i>
+ Download Image
+</button>
 
 <canvas id="canvas"></canvas>
 
-<div class="info">
-<h2>How To Use</h2>
-<p>Image upload करो, width & height डालो, resize करो।</p>
+<div class="size-info" id="sizeInfo">
 
-<h2>What It Does</h2>
-<p>Image को छोटा या बड़ा करता है quality के साथ।</p>
+Upload image to see width & height.
 
-<h2>Benefits</h2>
-<p>✔ Website images<br>✔ Social media<br>✔ Fast editing</p>
 </div>
+
+</div>
+
+<!-- SEO SECTION -->
+
+<div class="info">
+
+<h2>About Resize Image Tool</h2>
+
+<p>
+This free Resize Image tool helps users change image width and height online instantly. 
+You can resize photos for websites, social media, forms and more.
+</p>
+
+<h2>How To Use</h2>
+
+<ul>
+<li>Upload your image</li>
+<li>Enter custom width and height</li>
+<li>Click Resize Image button</li>
+<li>Download resized image instantly</li>
+</ul>
+
+<h2>Features</h2>
+
+<ul>
+<li>Fast image resizing</li>
+<li>Custom width & height</li>
+<li>Live image preview</li>
+<li>Free unlimited usage</li>
+<li>Works on mobile devices</li>
+<li>No signup required</li>
+</ul>
+
+<h2>FAQ</h2>
+
+<h3>Is this tool free?</h3>
+
+<p>
+Yes, this image resizer is completely free.
+</p>
+
+<h3>Can I resize photos for social media?</h3>
+
+<p>
+Yes, you can resize images for Instagram, Facebook, YouTube and more.
+</p>
+
+<h3>Does it work on mobile?</h3>
+
+<p>
+Yes, the tool is fully mobile responsive.
+</p>
+
+</div>
+
+<footer>
+
+© 2026 Free Tools Hub - All Rights Reserved
+
+</footer>
+
 </div>
 
 <script>
-function resize(){
-let f=document.getElementById('file').files[0];
-let r=new FileReader();
 
-r.onload=function(e){
-let img=new Image();
-img.src=e.target.result;
+let uploadedImage;
 
-img.onload=function(){
-let c=document.getElementById('canvas');
-let ctx=c.getContext('2d');
+document.getElementById('file').addEventListener('change',function(e){
 
-c.width=document.getElementById('w').value;
-c.height=document.getElementById('h').value;
+uploadedImage = e.target.files[0];
 
-ctx.drawImage(img,0,0,c.width,c.height);
+const reader = new FileReader();
+
+reader.onload = function(event){
+
+const img = document.createElement('img');
+
+img.src = event.target.result;
+
+const preview = document.getElementById('preview');
+
+preview.innerHTML = '';
+
+preview.appendChild(img);
+
+img.onload = function(){
+
+document.getElementById('w').value = img.width;
+document.getElementById('h').value = img.height;
+
+document.getElementById('sizeInfo').innerHTML =
+"Original Width: " + img.width + " PX <br> Original Height: " + img.height + " PX";
+
 }
+
 }
-r.readAsDataURL(f);
+
+reader.readAsDataURL(uploadedImage);
+
+});
+
+function resizeImage(){
+
+if(!uploadedImage){
+
+alert("Please upload image");
+
+return;
+
 }
+
+const reader = new FileReader();
+
+reader.onload = function(e){
+
+const img = new Image();
+
+img.src = e.target.result;
+
+img.onload = function(){
+
+const canvas = document.getElementById('canvas');
+
+const ctx = canvas.getContext('2d');
+
+const width = document.getElementById('w').value;
+
+const height = document.getElementById('h').value;
+
+canvas.width = width;
+
+canvas.height = height;
+
+ctx.drawImage(img,0,0,width,height);
+
+document.getElementById('sizeInfo').innerHTML +=
+"<br><br>New Width: " + width + " PX <br> New Height: " + height + " PX";
+
+}
+
+}
+
+reader.readAsDataURL(uploadedImage);
+
+}
+
+function downloadImage(){
+
+const canvas = document.getElementById('canvas');
+
+let link = document.createElement('a');
+
+link.download = "resized-image.png";
+
+link.href = canvas.toDataURL();
+
+link.click();
+
+}
+
 </script>
+
 </body>
 </html>
