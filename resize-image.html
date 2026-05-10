@@ -1,396 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Resize Image Online Free | Free Tools Hub</title>
-
-<meta name="description" content="Resize image online free with touch resize and custom width & height.">
-
-<link rel="icon" href="logo.png">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<title>Image Resize Tool</title>
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
-}
-
 body{
-background:linear-gradient(135deg,#07111f,#132238,#1d3557);
-padding:20px;
-color:white;
+    margin:0;
+    font-family: Arial;
+    background:#0b1220;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    min-height:100vh;
+    padding:30px;
+    overflow-x:hidden;
 }
 
+/* CARD LAYOUT FIX */
 .container{
-max-width:750px;
-margin:auto;
-background:#132238;
-padding:30px;
-border-radius:28px;
-box-shadow:0 10px 40px rgba(0,0,0,0.4);
+    width:100%;
+    max-width:750px;
+    background:#0f1b2d;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
 }
 
-h1{
-text-align:center;
-font-size:34px;
-margin-bottom:10px;
+/* HEADER */
+header{
+    text-align:center;
+    color:white;
+    font-size:26px;
+    font-weight:bold;
+    margin-bottom:5px;
 }
 
-.top-text{
-text-align:center;
-color:#d0dae5;
-margin-bottom:25px;
+.sub{
+    text-align:center;
+    color:#9fb3c8;
+    font-size:14px;
+    margin-bottom:20px;
 }
 
+/* UPLOAD BOX FIX (NO BREAK) */
 .upload-box{
-background:#0b1727;
-border:2px dashed #3d5a80;
-padding:30px;
-border-radius:20px;
-text-align:center;
-cursor:pointer;
-transition:0.3s;
+    border:2px dashed #3b82f6;
+    background:#111c2e;
+    padding:35px;
+    text-align:center;
+    border-radius:15px;
+    cursor:pointer;
+    color:white;
+    transition:0.3s;
 }
 
 .upload-box:hover{
-background:#102033;
+    background:#16263d;
 }
 
-.upload-box i{
-font-size:55px;
-color:#00b4ff;
-margin-bottom:15px;
+.upload-box input{
+    display:none;
 }
 
-input[type="file"]{
-display:none;
-}
-
-.editor{
-margin-top:30px;
-text-align:center;
-display:none;
-}
-
-#imageBox{
-position:relative;
-display:inline-block;
-border:2px solid #00b4ff;
-border-radius:12px;
-overflow:hidden;
-touch-action:none;
-}
-
-#image{
-display:block;
-max-width:100%;
-width:300px;
-}
-
-.resize-handle{
-width:22px;
-height:22px;
-background:#00b4ff;
-position:absolute;
-right:0;
-bottom:0;
-cursor:nwse-resize;
-border-radius:50%;
-}
-
+/* INPUTS */
 .controls{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-margin-top:25px;
+    margin-top:15px;
+    display:grid;
+    gap:10px;
 }
 
 .controls input{
-padding:14px;
-border:none;
-border-radius:12px;
-background:#0b1727;
-color:white;
-font-size:16px;
-outline:none;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #2c3e50;
+    background:#111c2e;
+    color:white;
 }
 
-button{
-width:100%;
-padding:15px;
-margin-top:18px;
-border:none;
-border-radius:14px;
-background:#00b4ff;
-color:white;
-font-size:17px;
-cursor:pointer;
-font-weight:600;
-transition:0.3s;
+/* BUTTON */
+.btn{
+    width:100%;
+    margin-top:15px;
+    padding:12px;
+    background:#00a8ff;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
 }
 
-button:hover{
-background:#0095d9;
-transform:scale(1.02);
+.btn:hover{
+    background:#0090dd;
 }
 
+/* OUTPUT */
+.output{
+    margin-top:20px;
+    text-align:center;
+}
+
+.output img{
+    max-width:100%;
+    margin-top:10px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.4);
+}
+
+/* INFO BOX */
 .info{
-margin-top:20px;
-background:#0b1727;
-padding:18px;
-border-radius:14px;
-line-height:1.8;
-color:#d0dae5;
+    margin-top:25px;
+    background:#111c2e;
+    padding:15px;
+    border-radius:12px;
+    color:#cbd5e1;
 }
 
-canvas{
-display:none;
+.info h3{
+    color:white;
 }
 
-@media(max-width:700px){
-
-.container{
-padding:22px;
+/* FIX OVERFLOW */
+html, body{
+    overflow-x:hidden;
 }
-
-h1{
-font-size:28px;
-}
-
-.controls{
-grid-template-columns:1fr;
-}
-
-#image{
-width:240px;
-}
-
-}
-
 </style>
-
 </head>
 
 <body>
 
 <div class="container">
 
-<h1><i class="fa-solid fa-expand"></i> Resize Image</h1>
+<header>📷 Image Resize Tool</header>
+<div class="sub">Resize Your Images Online Instantly</div>
 
-<p class="top-text">
-Resize image with touch, drag and custom size.
-</p>
-
-<label class="upload-box" for="fileInput">
-
-<i class="fa-solid fa-cloud-arrow-up"></i>
-
-<h2>Upload Image</h2>
-
-<p>Click to select image</p>
-
-</label>
-
-<input type="file" id="fileInput" accept="image/*">
-
-<div class="editor" id="editor">
-
-<div id="imageBox">
-
-<img id="image">
-
-<div class="resize-handle" id="handle"></div>
-
+<!-- UPLOAD -->
+<div class="upload-box" id="dropArea">
+    📤 Click OR Drag Image Here
+    <input type="file" id="fileInput" accept="image/*">
 </div>
 
+<!-- SIZE INPUT -->
 <div class="controls">
-
-<input type="number" id="widthInput" placeholder="Width">
-
-<input type="number" id="heightInput" placeholder="Height">
-
+    <input type="number" id="width" placeholder="Enter Width (px)">
+    <input type="number" id="height" placeholder="Enter Height (px)">
 </div>
 
-<button onclick="applyResize()">
-<i class="fa-solid fa-wand-magic-sparkles"></i>
- Apply Resize
-</button>
+<button class="btn" onclick="resizeImage()">Resize Image</button>
 
-<button onclick="downloadImage()">
-<i class="fa-solid fa-download"></i>
- Download Image
-</button>
+<div class="output" id="output"></div>
 
-<div class="info" id="info">
-
-Image size will appear here.
-
+<!-- HOW TO USE -->
+<div class="info">
+<h3>📌 How to Use</h3>
+<ul>
+<li>Select or drag image</li>
+<li>Enter width & height</li>
+<li>Click Resize button</li>
+<li>Download result</li>
+</ul>
 </div>
 
+<!-- FEATURES -->
+<div class="info">
+<h3>⚡ Features</h3>
+<ul>
+<li>✔ Fast resizing</li>
+<li>✔ No quality loss</li>
+<li>✔ Drag & drop support</li>
+<li>✔ Works offline</li>
+</ul>
 </div>
-
-<canvas id="canvas"></canvas>
 
 </div>
 
 <script>
 
-const fileInput = document.getElementById('fileInput');
-const image = document.getElementById('image');
-const editor = document.getElementById('editor');
-const widthInput = document.getElementById('widthInput');
-const heightInput = document.getElementById('heightInput');
-const info = document.getElementById('info');
+const fileInput = document.getElementById("fileInput");
+const dropArea = document.getElementById("dropArea");
 
-let currentWidth = 300;
-let currentHeight = 300;
+/* CLICK FIX */
+dropArea.addEventListener("click", ()=> fileInput.click());
 
-fileInput.addEventListener('change', function(e){
-
-const file = e.target.files[0];
-
-if(!file) return;
-
-const reader = new FileReader();
-
-reader.onload = function(event){
-
-image.src = event.target.result;
-
-editor.style.display = 'block';
-
-image.onload = function(){
-
-currentWidth = image.naturalWidth;
-currentHeight = image.naturalHeight;
-
-image.style.width = currentWidth + 'px';
-
-widthInput.value = currentWidth;
-heightInput.value = currentHeight;
-
-updateInfo();
-
-}
-
-}
-
-reader.readAsDataURL(file);
-
+/* DRAG DROP FIX */
+dropArea.addEventListener("dragover",(e)=>{
+    e.preventDefault();
 });
 
-function applyResize(){
+dropArea.addEventListener("drop",(e)=>{
+    e.preventDefault();
+    fileInput.files = e.dataTransfer.files;
+});
 
-currentWidth = widthInput.value;
-currentHeight = heightInput.value;
+function resizeImage(){
 
-image.style.width = currentWidth + 'px';
-image.style.height = currentHeight + 'px';
+    const file = fileInput.files[0];
+    if(!file){
+        alert("Please select image");
+        return;
+    }
 
-updateInfo();
+    const width = document.getElementById("width").value;
+    const height = document.getElementById("height").value;
 
-}
+    if(!width || !height){
+        alert("Enter width & height");
+        return;
+    }
 
-function updateInfo(){
+    const reader = new FileReader();
 
-info.innerHTML = `
-Original Width: ${image.naturalWidth}px <br>
-Original Height: ${image.naturalHeight}px <br><br>
+    reader.onload = function(){
 
-Current Width: ${currentWidth}px <br>
-Current Height: ${currentHeight}px
-`;
+        const img = new Image();
+        img.src = reader.result;
 
-}
+        img.onload = function(){
 
-function downloadImage(){
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
 
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
+            canvas.width = width;
+            canvas.height = height;
 
-canvas.width = currentWidth;
-canvas.height = currentHeight;
+            ctx.drawImage(img,0,0,width,height);
 
-ctx.drawImage(image,0,0,currentWidth,currentHeight);
+            const resized = canvas.toDataURL("image/png");
 
-const link = document.createElement('a');
+            const output = document.getElementById("output");
+            output.innerHTML = "";
 
-link.download = 'resized-image.png';
+            const newImg = document.createElement("img");
+            newImg.src = resized;
 
-link.href = canvas.toDataURL();
+            const btn = document.createElement("button");
+            btn.className = "btn";
+            btn.innerText = "Download Image";
 
-link.click();
+            btn.onclick = ()=>{
+                const a = document.createElement("a");
+                a.href = resized;
+                a.download = "resized-image.png";
+                a.click();
+            };
 
-}
+            output.appendChild(newImg);
+            output.appendChild(btn);
+        };
+    };
 
-/* TOUCH + DRAG RESIZE */
-
-const handle = document.getElementById('handle');
-
-let isResizing = false;
-
-handle.addEventListener('mousedown', startResize);
-handle.addEventListener('touchstart', startResize);
-
-function startResize(e){
-
-e.preventDefault();
-
-isResizing = true;
-
-document.addEventListener('mousemove', resize);
-document.addEventListener('mouseup', stopResize);
-
-document.addEventListener('touchmove', resize);
-document.addEventListener('touchend', stopResize);
-
-}
-
-function resize(e){
-
-if(!isResizing) return;
-
-let clientX = e.touches ? e.touches[0].clientX : e.clientX;
-let clientY = e.touches ? e.touches[0].clientY : e.clientY;
-
-const rect = image.getBoundingClientRect();
-
-currentWidth = clientX - rect.left;
-currentHeight = clientY - rect.top;
-
-if(currentWidth < 50) currentWidth = 50;
-if(currentHeight < 50) currentHeight = 50;
-
-image.style.width = currentWidth + 'px';
-image.style.height = currentHeight + 'px';
-
-widthInput.value = Math.floor(currentWidth);
-heightInput.value = Math.floor(currentHeight);
-
-updateInfo();
-
-}
-
-function stopResize(){
-
-isResizing = false;
-
-document.removeEventListener('mousemove', resize);
-document.removeEventListener('mouseup', stopResize);
-
-document.removeEventListener('touchmove', resize);
-document.removeEventListener('touchend', stopResize);
-
+    reader.readAsDataURL(file);
 }
 
 </script>
